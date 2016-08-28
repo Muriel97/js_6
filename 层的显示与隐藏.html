@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>层的显示与隐藏</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0px auto;
+		}
+		ul{
+			margin-left: 213px;
+		}
+		ul li{
+			text-decoration: none;
+			border: 1px solid black;
+			display: inline-block;
+			padding: 5px;
+			width: 188px;
+
+		}
+		#img1{
+			width: 1000px;
+			height: 1000px;
+			background: url(/Users/muriel/Desktop/JS/5.26/zz/1.jpg);
+			background-size: cover; 
+		}
+		#img2{
+			width: 1000px;
+			height: 1000px;
+			background: url(/Users/muriel/Desktop/JS/5.26/zz/2.jpg);
+			background-size: cover;
+			display: none; 
+		}
+		#img3{
+			width: 1000px;
+			height: 1000px;
+			background: url(/Users/muriel/Desktop/JS/5.26/zz/3.jpg);
+			background-size: cover; 
+			display: none;
+		}
+		#img4{
+			width: 1000px;
+			height: 1000px;
+			background: url(/Users/muriel/Desktop/JS/5.26/zz/4.jpg);
+			background-size: cover; 
+			display: none;
+		}
+		#img5{
+			width: 1000px;
+			height: 1000px;
+			background: url(/Users/muriel/Desktop/JS/5.26/zz/5.jpg);
+			background-size: cover; 
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li onclick="show('img1')">疯狂动物城_狮子</li><li onclick="show('img2')">疯狂动物城_水獭</li><li onclick="show('img3')">疯狂动物城_兔子</li><li onclick="show('img4')">疯狂动物城_狐狸</li><li onclick="show('img5')">疯狂动物城_仓鼠</li>
+	</ul>
+
+
+	<div id="img1"></div>
+	<div id="img2"></div>
+	<div id="img3"></div>
+	<div id="img4"></div>
+	<div id="img5"></div>
+
+
+
+	<script type="text/javascript">
+		function getStyle( obj,attr ){
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle( obj,false )[ attr ];
+			}
+		}
+		function  show(i) {
+			for (var n = 1; n <= 5; n++) {
+				if (("img"+n)==i) {
+					document.getElementById(i).style.display=" block ";
+				}else{
+					document.getElementById("img"+n).style.display=" none ";
+				}
+			}
+		}
+	</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js里的style</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	    p{
+	    	color: red;
+	    }
+	</style>
+</head>
+<body>
+    <p>测试文字</p>
+    <input onclick="changeP()" type="button" value="换颜色">
+	<script type="text/javascript">
+		function changeP () {
+			var myP=document.getElementsByTagName('p');
+			myP.style.color="blue";
+		}
+	</script>
+
+
+
+</body>
+</html>

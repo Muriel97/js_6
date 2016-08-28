@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<img src="/Users/muriel/Desktop/fish.gif">
+	<!-- onunload：卸载事件，网页关闭或刷新前执行 -->
+	<script type="text/javascript">
+		window.onunload=function () {
+			window.open( "http://www.baidu.com" );
+		}
+		window.onbeforeunload=function () {
+			return "真的要离开吗?"
+		}
+	</script>
+</body>
+</html>

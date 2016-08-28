@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0px auto;
+		}
+		#mainContent{
+			width: 200px;
+			height: 300px;
+			border: 1px solid #ccc;
+			margin-top: 20px;
+			overflow: scroll;
+		}
+		#myContent{
+			width: 100%;
+			
+		}
+		li{
+			list-style: none;
+			text-align: center;
+		}
+		#showhidden{
+			width: 100%;
+			height: 10%;
+			background: #3cf;
+		}
+	</style>
+</head>
+<body>
+	<div id="mainContent">
+		<div id="myContent">
+			<ul>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+				<li>1324363547658769878709</li>
+			</ul>
+		</div>
+		<div id="showhidden" style="display:none;"> 
+			<p>加载中，请稍后........</p> 
+		</div>
+	</div>
+	<script type="text/javascript">
+		var obj=document.getElementById('mainContent');
+		obj.onscroll=function  (argument) {
+			var scrollH=obj.scrollHeight;         //整个内容的高度，包括卷起来的部分
+			var scrollT=obj.scrollTop;           //被卷起来的高度，滚动到哪来了
+			var clientH=obj.clientHeight;       //显示的内容的区域，不包括卷起来的部分
+			//console.log( "scrollHeight:"+scrollH+"------------scrollTop"+scrollT+"-------------clientHeight"+clientH );
+			if (scrollH==scrollT+clientH) {
+				var sh=document.getElementById("showhidden");
+				sh.style.display="block";
+				window.setTimeout( "frush()",1000 );
+			}
+		}
+
+		function frush(){
+			var newdiv=document.createElement("div");
+			var newul=document.createElement("ul");
+			for (var i = 0; i < 27; i++) {
+				var newli=document.createElement("li");
+				newli.innerHTML="kjwhvkjgshbvukhabkew";
+				newul.appendChild(newli);
+			}
+			newdiv.appendChild(newul);
+			var sh=document.getElementById("showhidden");
+			obj.insertBefore( newdiv,sh );
+		}
+		
+	</script>
+</body>
+</html>

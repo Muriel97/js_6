@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>可拖拽的层</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#box{
+			position: absolute;
+			left: 300px;
+			top: 200px;
+			font-size:12px;
+			background: pink;
+			padding: 5px;
+			-moz-box-shadow:2px 2px 4px red; 
+			-webkit-box-shadow:2px 2px 4px red;
+			-ms-box-shadow:2px 2px 4px red;
+		}
+		#content{
+			border: 1px solid #A5B5D6;
+		}
+		#top{
+			width: 425px;
+			line-height: 25px;
+			cursor: move;
+			background: #BDCEEF;
+			border-bottom: 1px solid #A5B5D6;
+			padding-left: 5px;
+		}
+		#close{
+			color: red;
+			font-size: 30px;
+			font-weight: bold;
+			float: right;
+			position: absolute;
+			top: 2px;
+			right: 8px;
+		}
+		#bottom{
+			width: 420px;
+			height: 250px;
+			padding: 10px 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="content">
+			<div id="top">
+				可拖拽
+				<span id="close">x</span>
+			</div>
+			<div id="bottom">
+				内容。。。。。
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload=function  () {
+			var oBox=document.getElementById('box');
+			var oTop=document.getElementById('top');
+			document.getElementById('close').onclick=function(){
+				document.getElementById('box').style.display="none";
+			}
+			startDrag(oBox,oTop);
+		}
+		var params={
+			left:0,
+			top:0,
+			currentX:0,
+			currentY:0,
+			flag:false
+		}
+
+
+		function getStyle( obj,attr ){
+			if (obj.currentStyle) {              //获取内部或外部样式
+				return obj.currentStyle[ attr ];
+			}else{
+				return getComputedStyle( obj,false )[ attr ];
+			}
+		}
+
+
+		function startDrag(oBox,oTop){
+			//获取到默认状态下box的left和top的值
+			params.left=getStyle(oBox,"left");
+			params.top=getStyle( oBox,"top" );
+
+			//鼠标按下
+			oTop.onmousedown=function(event){
+				//1.修改flag的值 
+				params.flag=true;
+				//解决bug，不能让鼠标去点中文字
+				if (!event) {
+					event=window.event;     //ie
+					oTop.onselectstart=function(){          
+						return false;
+					}
+				}
+
+				//  2.得到当前鼠标的坐标
+				var e=event?event:window.event;
+				params.currentX=e.clientX;
+				params.currentY=e.clientY;
+			}
+
+			//鼠标移动
+			document.onmousemove=function(event){
+				var e=event?event:window.event;				
+				//1.判断flag 
+				if (params.flag) {
+					var nowX=e.clientX;
+					var nowY=e.clientY;
+					var disX=nowX-params.currentX;      //2.得到移动的距离 
+					var disY=nowY-params.currentY;
+					oBox.style.left=parseInt( params.left )+disX+"px";    //3.赋值
+					oBox.style.top=parseInt( params.top )+disY+"px";
+				}
+				 
+				
+			}
+			//鼠标松开
+			document.onmouseup=function(event){
+				var e=event?event:window.event;
+				//1.修改flag的值
+				params.flag=false;
+				params.left=getStyle( oBox,"left" );
+				params.top=getStyle( oBox,"top" );
+			}
+		}
+	</script>
+</body>
+</html>

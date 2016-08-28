@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<p id="myP">点我，弹出自定义右键</p>
+	<div id="myDiv">
+		<li>ajkgbvsj</li>
+		<li>sklb</li>
+		<li>jwknblwgbs</li>
+	</div>
+	<script type="text/javascript">
+		var myP=document.getElementById('myP');
+		var myDiv=document.getElementById("myDiv");
+		myP.onmousedown=function  (event) {
+			var event=event ? event : window.event;
+			if ( event.button==2 ) {
+				document.oncontextmenu=function(aevent){
+					if (window.event) {
+						aevent=window.event;
+						aevent.returnValue=false;
+
+					}else{
+						aevent.preventDefault();
+					}
+				}
+				myDiv.style.display="block";
+
+			}
+		}
+		myDiv.onmouseout=function(){
+			myDiv.style.cssText=" display:none ;";
+		}
+	</script>
+</body>
+</html>

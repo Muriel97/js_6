@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件流_DOM0,DOM2,IE</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<input type="button" value="Ie" id="btn">
+	<script type="text/javascript">
+		var btn=document.getElementById("btn");
+		//在非ie中不可以实现
+		btn.attachEvent("onclick",show);    //添加Ie事件处理程序
+		function show () {
+			alert('Ie事件处理程序');    
+		}
+		btn.detachEvent("onclick",show);    //删除Ie事件处理程序
+	</script>
+
+
+</body>
+</html>

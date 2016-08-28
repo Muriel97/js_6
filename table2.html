@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	    .title{
+
+	    }
+	</style>
+</head>
+<body>
+	<table border="1px" cellpadding="0px" cellspacing="0px" width="300px" id="Table">
+		<tr>
+			<td>书名</td>
+			<td>价格</td>
+		</tr>
+		<tr>
+			<td>看得见风景的房间</td>
+			<td>¥30.00</td>
+		</tr>
+		<tr>
+			<td>60个瞬间</td>
+			<td>¥32.00</td>
+		</tr>
+	</table>
+	<form>
+	    <input type="button" name="shu" value="增加一行" id="first" onclick="addOne()">
+		<input type="button" name="shu" value="删除第二行" id="second" onclick="deleteTwo()">
+		<input type="button" name="shu" value="修改标题" id="second" onclick="changeTitle()">
+	</form>
+	<script type="text/javascript">
+		function addOne () {
+			var table=document.getElementById('Table') ;
+			var newRow=table.insertRow(table.rows.length);
+			var cell1=newRow.insertCell(0);
+			//cell1.appendChild( document.createTextNode( "最好的我们" ) )
+			cell1.innerHTML="最好的我们";
+			var cell2=newRow.insertCell(1);
+			//cell2.appendChild( document.createTextNode( "¥10.00" ) );
+			cell2.innerHTML="¥10.00";
+		}
+		function deleteTwo(){
+			document.getElementById( 'Table' ).deleteRow(1);
+		}
+		function changeTitle() {
+			var row1=document.getElementById( 'Table' ).rows[0];
+			row1.className="title";     //动态改变类名
+		}
+	</script>
+
+</body>
+</html>

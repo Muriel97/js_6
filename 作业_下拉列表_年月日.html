@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>作业_下拉列表_年月日</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		select{
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<select id="year" onchange="ChangeYear()"></select>
+	<select id="mouth" onchange="ChangeMouth()"></select>
+	<select id="date" ></select>
+
+	<script type="text/javascript">
+		var year=document.getElementById('year');
+		var mouth=document.getElementById('mouth');
+		var date=document.getElementById('date');
+
+		function  AddOption() {
+			year.innerHTML="";
+			for (var i = 2016; i > 0; i--) {
+				var opt=document.createElement("option");
+				opt.innerHTML=i;
+				year.appendChild(opt);
+			}
+		} 
+		AddOption();
+
+		function  ChangeYear() {
+			var mouth = document.getElementById("mouth");  
+			mouth.innerHTML = "";  
+			for (var i = 1; i <= 12; i++) {
+				var opt=document.createElement("option");
+				opt.innerHTML=i;
+				mouth.appendChild(opt);
+			}
+
+			var date = document.getElementById("date");  
+			date.innerHTML = "";  
+			for (var i = 1; i <= 31; i++) {
+				var opt=document.createElement("option");
+				opt.innerHTML=i;
+				date.appendChild(opt);
+			}
+		}
+		ChangeYear();
+
+		function ChangeMouth(){ 
+			var day = 31;
+			var value = mouth.options[mouth.selectedIndex].value;
+			var value1 = year.options[year.selectedIndex].value;
+			// if (value==1||value==3||value==5||value==7||value==8||value==10||value==12) {
+			// 	day = 31;
+			// }else if (value==2) {
+			// 	day = 28;
+			// }else{
+			// 	day = 30;
+			// }
+			switch(parseInt(value)){
+				case 1:case 3:case 5: case 7:case 8:case 10:case 12:
+				day=31;
+				break;
+				case 2:
+				day=28;
+				break;
+				default:
+				day=30;
+				break;
+
+			}
+			if(day == 28){  
+				if ((value1%4==0 && value1%100!=0) || (value1%400==0)){  
+					day = 29;  
+				}  
+			}  
+
+			date.innerHTML = "";  
+			for(var i = 1;i <= day;i++)  {  
+				var opt=document.createElement("option");
+				opt.innerHTML=i;
+				date.appendChild(opt);  
+			}  
+		}
+		ChangeMouth();
+	</script>
+</body>
+</html>

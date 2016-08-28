@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="txt">
+
+	<script type="text/javascript">
+		var txt=document.getElementById('txt');
+		// txt.onkeydown=function(){
+		// 	alert( txt.value );      //先触发事件，再显示
+		// }
+		// txt.onkeypress=function(){
+		// 	alert( txt.value );      //官网：按下后松开触发事件，这个是错的 先触发事件，再显示    要先产生一个字符才会被触发（火狐里监听不到功能键） 一直按会不停触发
+		// }
+
+		txt.onkeyup=function(){
+			alert( txt.value );     //先显示再触发
+		}
+
+	</script>
+</body>
+</html>

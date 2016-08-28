@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件流_事件捕获和冒泡</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="div">
+		<p id="p">
+			<span id="s">
+				点我
+			</span>
+		</p>
+	</div>
+	<script type="text/javascript">
+		var div=document.getElementById("div");
+		var p=document.getElementById("p");
+		var s=document.getElementById("s");
+		
+		//事件捕获是从最不具体到最具体（tru）
+		div.addEventListener("click",function(){
+			console.log("div  shfbgjdhbsvhds");
+		},true);
+		p.addEventListener("click",function(){
+			console.log("p  shfbgjdhbsvhds");
+		},true);
+		s.addEventListener("click",function(){
+			console.log("s  shfbgjdhbsvhds");
+		},true);
+		
+		//事件冒泡是从最具体到最不具体（false）
+		div.addEventListener("click",function(){
+			console.log("div  shfbgjdhbsvhds");
+		},false);
+		p.addEventListener("click",function(){
+			console.log("p  shfbgjdhbsvhds");
+		},false);
+		s.addEventListener("click",function(){
+			console.log("s  shfbgjdhbsvhds");
+		},false);
+	</script>
+
+</body>
+</html>

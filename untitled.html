@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> z</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="mydiv">
+	    你吃不吃饼干？    
+	    <p>吃了你就是我老婆</p>
+	    <div>不吃就是女朋友</div>
+	    <h2>不吃算了</h2> 
+	</div>
+
+	<script type="text/javascript">
+	    var mydiv=document.getElementById('mydiv');
+	    console.log( ""+mydiv.nodeValue+""+mydiv.nodeType+""+mydiv.nodeName );
+	    var node=mydiv.childNodes;
+	    for (var i = 0; i < node.length; i++) {
+	    	console.log( "第"+(i+1)+"个节点<br>节点名："+node[i].nodeName+"<br>节点类型"+node[i].nodeType+"<br>节点的值"+node[i].nodeValue+"" );
+	    };
+	</script>
+</body>
+</html>

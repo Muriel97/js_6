@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		audio{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<audio src="/Users/muriel/Desktop/1.mp3" id="audio" controls="controls">
+		对不起，您的浏览器不支持html5，请更新浏览器
+	</audio>
+	<input type="button" value="播放" onclick="playOrPause(this)">
+	<input type="button" value="隐藏控制框" onclick="hiddenOrShowControl(this)">
+	<input type="button" value="开启静音" onclick="muted(this)">
+	<input type="button" value="获取播放时间" onclick="getCurrentTime(this)">
+	<input type="button" value="音量＋" onclick="vol('up')" id="upVol">
+	<input type="button" value="音量－" onclick="vol('down')" id="upVol2">
+	当前音量：<span id="nowVol"></span>
+
+	<script type="text/javascript">
+		var audio;
+		window.onload=function() {
+			audio=document.getElementById("audio");
+
+			document.getElementById( 'nowVol' ).innerHTML=audio.volume*100;  //原本的范围为0-1
+
+		}
+
+		//播放 
+		function playOrPause(obj){
+			if (audio.paused) {
+				audio.play();
+				obj.value="暂停";
+			}else {
+				audio.pause();
+				obj.value="播放";
+			}
+		}
+
+		//显示隐藏控制框
+		function hiddenOrShowControl(obj){
+			if (audio.controls) {
+				audio.removeAttribute("controls");
+				obj.value="显示控制框";
+			}else {
+				audio.controls="controls";
+				obj.value="隐藏控制框";
+			}
+		}
+
+		//开启静音
+		function muted(obj){
+			if (audio.muted) {
+				audio.muted=false;
+				obj.value="开启静音";
+			}else {
+				audio.muted=true;
+				obj.value="关闭静音";
+			}
+		}
+		//获取当前时间
+		function getCurrentTime(){
+			alert( audio.currentTime+' :秒 ' );
+		}
+
+		//音量控制
+		function vol(type){
+			if (type=='up') {
+				var volume=audio.volume+0.1 ;
+				if (volume>=1) {
+					volume=1;
+				}
+				audio.volume=volume;
+			}else if(type=='down'){
+				var volume=audio.volume-0.1 ;
+				if (volume<=0) {
+					volume=0;
+				}
+				audio.volume=volume;
+			}
+			document.getElementById('nowVol').innerHTML=parseInt( audio.volume*100 );
+
+		}
+
+		//快捷键
+		document.onkeydown=function(event){
+			var e=event?event:window.event;
+			var keycode=e.keyCode;
+			if (keycode==32) {
+				playOrPause(document.getElementsByTagName('input')[0]);
+			}    //空格
+			if (e.shiftKey && keycode==83) {
+				hiddenOrShowControl(document.getElementsByTagName('input')[1]);
+			}    //shift＋s
+			if (e.ctrlKey && keycode==39) {
+				audio.currentTime+=5;
+			};   //快进ctrl+右键
+		}
+
+		window.setInterval(function(){
+			if( audio.ended ){
+				//播放下一首：改变src属性值，然后autoplay
+			}
+		},1000);
+	</script>
+</body>
+</html>
